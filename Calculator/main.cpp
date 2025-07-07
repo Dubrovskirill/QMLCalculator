@@ -1,22 +1,24 @@
+
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
+#include <QQmlContext>
+#include "calculatormodel.h"
+#include "calculatorviewmodel.h"
 
-
-int main(int argc, char *argv[])
-{
-#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
-    QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
-#endif
+int main(int argc, char* argv[]) {
     QGuiApplication app(argc, argv);
 
+    CalculatorModel model;
+    CalculatorViewModel viewModel(&model);
+
     QQmlApplicationEngine engine;
+    engine.rootContext()->setContextProperty("calculatorModel", &model);
+    engine.rootContext()->setContextProperty("viewModel", &viewModel);
+
     const QUrl url(QStringLiteral("qrc:/main.qml"));
-    QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,
-        &app, [url](QObject *obj, const QUrl &objUrl) {
-            if (!obj && url == objUrl)
-                QCoreApplication::exit(-1);
-        }, Qt::QueuedConnection);
     engine.load(url);
+
+    if (engine.rootObjects().isEmpty()) return -1;
 
     return app.exec();
 }

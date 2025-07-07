@@ -1,5 +1,8 @@
 <RCC>
     <qresource prefix="/">
         <file>main.qml</file>
+        <file>CalculatorDisplay.qml</file>
+        <file>CalculatorButtons.qml</file>
+        <file>HistoryView.qml</file>
     </qresource>
 </RCC>

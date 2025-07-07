@@ -1,9 +1,29 @@
 import QtQuick 2.15
-import QtQuick.Window 2.15
+import QtQuick.Controls 2.15
+import QtQuick.Layouts 1.15
 
-Window {
-    width: 640
-    height: 480
+ApplicationWindow {
+    id: root
     visible: true
-    title: qsTr("Hello World")
+    width: 400
+    height: 600
+    title: "Calculator"
+
+    ColumnLayout {
+        anchors.fill: parent
+        anchors.margins: 10
+
+        CalculatorDisplay {
+            Layout.fillWidth: true
+        }
+
+        CalculatorButtons {
+            Layout.fillWidth: true
+        }
+
+        HistoryView {
+            Layout.fillWidth: true
+            Layout.fillHeight: true
+        }
+    }
 }
