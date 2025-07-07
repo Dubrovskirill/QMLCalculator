@@ -6,6 +6,7 @@ QT += quick
 
 SOURCES += \
         CalculatorModel.cpp \
+        CalculatorViewModel.cpp \
         main.cpp
 
 RESOURCES += qml.qrc
@@ -22,4 +23,5 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 HEADERS += \
-    CalculatorModel.h
+    CalculatorModel.h \
+    CalculatorViewModel.h
